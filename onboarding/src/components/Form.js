@@ -4,7 +4,8 @@ import axios from 'axios';
 import * as Yup from 'yup';
 
 
-function LoginForm({ values, errors, touched }) {
+function LoginForm({ values, errors, touched, setter }) {
+
     return (
         <Form>
             <div>
@@ -72,6 +73,7 @@ const FormikLoginForm = withFormik({
             .post("https://reqres.in/api/users", values)
             .then(res => {
               console.log(res); // Data was created successfully and logs to console
+              setter(res);
               resetForm();
               setSubmitting(false);
             })
